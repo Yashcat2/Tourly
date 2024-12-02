@@ -3,7 +3,7 @@ import 'package:tourly/model/place_model.dart';
 import 'package:tourly/screens/Home/widgets/category_card.dart';
 import 'package:tourly/screens/Home/widgets/recomended.dart';
 import 'package:tourly/screens/detailsScreen/detail_screen.dart';
-import 'package:tourly/utilities/colors.dart';
+// import 'package:tourly/utilities/colors.dart';
 
 class HotelScreen extends StatelessWidget {
   const HotelScreen({super.key});
