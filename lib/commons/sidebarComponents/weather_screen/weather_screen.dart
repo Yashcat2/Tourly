@@ -87,7 +87,7 @@ Widget _buildWeatherWidget( ) {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              (response?.current?.tempC.toString() ?? "")+" °C",
+              "${response?.current?.tempC.toString() ?? ""} °C",
               style: const TextStyle(
                 fontSize: 60,
                 fontWeight: FontWeight.bold,
@@ -108,7 +108,7 @@ Widget _buildWeatherWidget( ) {
         ),
         Center(
           child: Text(
-            (response?.current?.condition?.text.toString() ?? "")+" °C",
+            "${response?.current?.condition?.text.toString() ?? ""} °C",
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
@@ -196,8 +196,6 @@ _getWeatherData(String location) async{
 
 try{
     response = await Weatherapi().getCurrentWeather(location); 
-}catch(e){
-
 }finally{
   setState(() {
     inProgress = false;

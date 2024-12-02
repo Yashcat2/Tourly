@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tourly/screens/Home/home.dart';
-import 'package:tourly/screens/Home/home_screen.dart';
 import 'package:tourly/utilities/colors.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -17,7 +16,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       body: Stack(
         children: [
           Image.asset(
-            "assests/images/welcome.jpeg",
+            "assests/images/galle.png",
             height: double.infinity,
             width: double.infinity,
             fit: BoxFit.cover,
@@ -43,7 +42,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       height: 15,
                     ),
                     const Text(
-                      "The journey is yur home. Wxplore the world with our smart travel app get the feeling like your own home",
+                      "The journey is yur home. Explore the world with our smart travel app get the feeling like your own home",
                       style: TextStyle(
                           color: kWhiteClr,
                           fontSize: 16,
@@ -96,7 +95,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const HomeScreen()));
+                                builder: (context) => const HomeScreen2()));
                       },
                       child: Container(
                         height: 55,

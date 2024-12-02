@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tourly/commons/collapsing_navigation_bar.dart';
 import 'package:tourly/model/place_model.dart';
 import 'package:tourly/screens/Home/widgets/recomended.dart';
+import 'package:tourly/screens/category_screen/falls_category.dart';
 import 'package:tourly/screens/detailsScreen/detail_screen.dart';
+import 'package:tourly/screens/food_screen.dart';
+import 'package:tourly/screens/hotel_screen.dart';
 import 'package:tourly/utilities/colors.dart';
 
 import 'widgets/category_card.dart';
@@ -21,8 +24,8 @@ class _HomeScreen2State extends State<HomeScreen2> {
   // List of screens for the bottom navigation bar
   final List<Widget> _screens = [
     const HomeContentScreen(), // The Home Screen you provided
-    const PlaceholderScreen(title: "Hotel Screen"),
-    const PlaceholderScreen(title: "Food Screen"),
+    const HotelScreen(),
+    const FoodScreen(),
   ];
 
   // Handle bottom navigation bar icon tap
@@ -167,9 +170,18 @@ class HomeContentScreen extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     child: TextFormField(
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                         hintText: "Search your Destination",
-                                        prefixIcon: Icon(Icons.search),
+                                        prefixIcon: IconButton(
+                                          onPressed: () {
+                                            showSearch(
+                                              context: context, 
+                                              delegate: CustomSearchDelegate(),
+                                              );
+                                          },
+
+                                          icon: const Icon(Icons.search),
+                                          ),
                                         enabledBorder: InputBorder.none,
                                         focusedBorder: InputBorder.none,
                                       ),
@@ -215,23 +227,29 @@ class HomeContentScreen extends StatelessWidget {
                                 children: [
                                   CategoryCard(
                                     press: () {},
-                                    image: "assests/images/mountains.jpeg",
+                                    image: "assests/images/mountain.png",
                                     title: "Mountains",
+                                    
+                                  ),
+                                  CategoryCard(
+                                    press: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => FallsCategory()),
+                                        );
+                                      },
+                                    image: "assests/images/falls.png",
+                                    title: "Water Falls",
                                   ),
                                   CategoryCard(
                                     press: () {},
-                                    image: "assests/images/forests.jpeg",
-                                    title: "Forests",
+                                    image: "assests/images/beach.png",
+                                    title: "Beaches",
                                   ),
                                   CategoryCard(
                                     press: () {},
-                                    image: "assests/images/sea.webp",
-                                    title: "Sea",
-                                  ),
-                                  CategoryCard(
-                                    press: () {},
-                                    image: "assests/images/deserts.jpeg",
-                                    title: "Deserts",
+                                    image: "assests/images/an.png",
+                                    title: "Ancient",
                                   ),
                                 ],
                               ),
@@ -364,3 +382,119 @@ class PlaceholderScreen extends StatelessWidget {
     );
   }
 }
+
+
+class CustomSearchDelegate extends SearchDelegate{
+
+List<String> searchTerms =[
+'Galle',
+'Matale',
+'Badulla',
+
+];
+
+
+
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(
+        onPressed: (){
+          query = '';
+        }, 
+        icon: Icon(Icons.clear)
+        ),
+    ];
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.arrow_back),
+      onPressed:(){
+        close(context, null);
+      } ,
+    
+      
+      );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    List<String> matchQuery =[];
+    for(var name in searchTerms) {
+      if(name.toLowerCase().contains(query.toLowerCase())){
+        matchQuery.add(name);
+      }
+    }
+     return ListView.builder(
+    itemCount: matchQuery.length,
+    itemBuilder: (context, index) {
+      var result = matchQuery[index];
+      return ListTile(
+        title: Text(result),
+        onTap: () {
+          // Use a valid placeInfo object (assumes you have a mapping between names and places)
+          final selectedPlace = places.firstWhere(
+            (place) => place.name.toLowerCase() == result.toLowerCase(),
+            orElse: () => null, // Fallback if not found
+          );
+
+          if (selectedPlace != null) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailScreen(placeInfo: selectedPlace),
+              ),
+            );
+          } else {
+            // Handle error if no matching place is found
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text("Place information not available"),
+              ),
+            );
+          }
+        },
+      );
+      },
+  );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> matchQuery = [];
+      return ListView.builder(
+    itemCount: matchQuery.length,
+    itemBuilder: (context, index) {
+      var result = matchQuery[index];
+      return ListTile(
+        title: Text(result),
+        onTap: () {
+          // Use a valid placeInfo object (assumes you have a mapping between names and places)
+          final selectedPlace = places.firstWhere(
+            (place) => place.name.toLowerCase() == result.toLowerCase(),
+            orElse: () => null, // Fallback if not found
+          );
+
+          if (selectedPlace != null) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailScreen(placeInfo: selectedPlace),
+              ),
+            );
+          } else {
+            // Handle error if no matching place is found
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text("Place information not available"),
+              ),
+            );
+          }
+        },
+      );
+    
+        }
+      );
+}}
