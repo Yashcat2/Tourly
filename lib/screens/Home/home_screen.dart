@@ -67,11 +67,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: kPrimaryClr,
                 size: 46,
               ),
-              Icon(
-                Icons.account_circle_outlined,
-                color: kPrimaryClr,
-                size: 46,
-              ),
+              // Icon(
+              //   Icons.account_circle_outlined,
+              //   color: kPrimaryClr,
+              //   size: 46,
+              // ),
             ],
           ),
         ),

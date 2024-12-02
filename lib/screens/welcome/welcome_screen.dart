@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tourly/commons/collapsing_navigation_bar.dart';
+import 'package:tourly/screens/Home/home.dart';
 import 'package:tourly/screens/Home/home_screen.dart';
 import 'package:tourly/utilities/colors.dart';
 
@@ -60,7 +60,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const HomeScreen()));
+                                builder: (context) => const HomeScreen2()));
                       },
                       child: Container(
                         height: 55,

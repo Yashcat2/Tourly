@@ -49,7 +49,7 @@ class _CollapsingNavigationBarState extends State<CollapsingNavigationBar>
   Widget getWidget(context, widget) {
     return Container(
       width: widthAnimation.value,
-      color: kPrimaryClr,
+      color: kWhiteshClr,
       child: Column(
         children: <Widget>[
           const SizedBox(height: 50),
@@ -60,6 +60,8 @@ class _CollapsingNavigationBarState extends State<CollapsingNavigationBar>
                   title: navigatioItems[counter].title,
                   icon: navigatioItems[counter].icon,
                   animationController: _animationController,
+                  targetWidget:
+                      navigatioItems[counter].targetWidget, // Pass targetWidget
                 );
               },
               itemCount: navigatioItems.length,
@@ -77,7 +79,7 @@ class _CollapsingNavigationBarState extends State<CollapsingNavigationBar>
             child: AnimatedIcon(
               icon: AnimatedIcons.close_menu,
               progress: _animationController,
-              color: kWhiteClr,
+              color: kPrimaryClr,
               size: 50,
             ),
           ),
