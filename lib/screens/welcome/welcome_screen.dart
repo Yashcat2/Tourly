@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tourly/Auth/SignIn.dart';
 import 'package:tourly/screens/Home/home.dart';
 import 'package:tourly/screens/Home/home_screen.dart';
 import 'package:tourly/utilities/colors.dart';
@@ -96,7 +97,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const HomeScreen()));
+                                builder: (context) =>  SignInPage()));
                       },
                       child: Container(
                         height: 55,

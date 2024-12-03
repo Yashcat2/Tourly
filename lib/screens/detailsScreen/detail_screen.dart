@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tourly/model/place_model.dart';
+import 'package:tourly/screens/Home/widgets/ProceedWidget.dart';
 import 'package:tourly/utilities/colors.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -212,9 +213,19 @@ class _DetailScreenState extends State<DetailScreen> {
                               height: 55,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(100)),
-                              onPressed: () {},
-                              child: const Text(
-                                "Book Trip",
+                              onPressed: () {
+                                    showModalBottomSheet(
+                                      context: context,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+                                      ),
+                                      builder: (BuildContext context) {
+                                        return ProceedWidget();
+                                      },
+                                    );
+                                  },
+                                child: const Text(
+                                "Book Now",
                                 style: TextStyle(
                                     color: kWhiteClr,
                                     fontWeight: FontWeight.bold,

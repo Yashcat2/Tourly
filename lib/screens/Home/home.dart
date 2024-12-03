@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tourly/commons/collapsing_navigation_bar.dart';
 import 'package:tourly/model/place_model.dart';
-import 'package:tourly/screens/Home/widgets/recomended.dart';
+import 'package:tourly/screens/Home/widgets/recomended_card.dart';
 import 'package:tourly/screens/detailsScreen/detail_screen.dart';
 import 'package:tourly/utilities/colors.dart';
 
