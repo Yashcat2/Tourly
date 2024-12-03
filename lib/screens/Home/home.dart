@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tourly/Auth/SignIn.dart';
 import 'package:tourly/commons/collapsing_navigation_bar.dart';
 import 'package:tourly/model/place_model.dart';
 import 'package:tourly/screens/Home/widgets/recomended_card.dart';
@@ -8,6 +9,7 @@ import 'package:tourly/utilities/colors.dart';
 import 'widgets/category_card.dart';
 
 class HomeScreen2 extends StatefulWidget {
+
   const HomeScreen2({super.key});
 
   @override
@@ -17,6 +19,7 @@ class HomeScreen2 extends StatefulWidget {
 class _HomeScreen2State extends State<HomeScreen2> {
   // Page controller for switching between screens
   int _selectedIndex = 0;
+   bool isLoggedIn = false; // State to track login status
 
   // List of screens for the bottom navigation bar
   final List<Widget> _screens = [
@@ -37,31 +40,64 @@ class _HomeScreen2State extends State<HomeScreen2> {
     return Scaffold(
       backgroundColor: kWhiteClr,
       appBar: AppBar(
-        backgroundColor: kPrimaryClr,
-        elevation: 0,
-        title: const Text(
-          "Discover",
-          style: TextStyle(
-            color: kWhiteClr,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications, color: kWhiteClr),
-            onPressed: () {
-              // Handle notification click
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.settings, color: kWhiteClr),
-            onPressed: () {
-              // Handle settings click
-            },
-          ),
-        ],
-      ),
+  backgroundColor: kPrimaryClr,
+  elevation: 0,
+  title: const Text(
+    "Discover",
+    style: TextStyle(
+      color: kWhiteClr,
+      fontSize: 24,
+      fontWeight: FontWeight.bold,
+    ),
+  ),
+  actions: [
+    IconButton(
+      icon: const Icon(Icons.notifications, color: kWhiteClr),
+      onPressed: () {
+        // Handle notification click
+      },
+    ),
+    IconButton(
+      icon: const Icon(Icons.settings, color: kWhiteClr),
+      onPressed: () {
+        // Handle settings click
+      },
+    ),
+    // Add New User Button
+    // Login or Logged Button
+          isLoggedIn
+              ? const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Text(
+                    "User Logged",
+                    style: TextStyle(
+                      color: kWhiteClr,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                )
+              : TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SignIn(), // Navigate to SignIn page
+                      ),
+                    ).then((_) {
+                      // Assume login is successful for simplicity
+                      setState(() {
+                        isLoggedIn = true; // Update login status
+                      });
+                    });
+                  },
+                  child: const Text(
+                    "User Login",
+                    style: TextStyle(color: kWhiteClr, fontSize: 16),
+                  ),
+                ),
+  ],
+),
       drawer: CollapsingNavigationBar(), // Custom sidebar widget
       body: _screens[_selectedIndex], // Display the selected screen
       bottomNavigationBar: SafeArea(

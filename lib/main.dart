@@ -6,7 +6,19 @@ import 'package:tourly/screens/welcome/welcome_screen.dart';
   
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();  // Initialize Firebase
+ await Firebase.initializeApp(
+  options: FirebaseOptions(
+    apiKey: "AIzaSyD-ExampleApiKey",
+    appId: "1:1234567890:ios:abcd1234efgh5678",
+    messagingSenderId: "173114150078",
+    projectId: "tourly-93b01",
+    authDomain: "your-project-id.firebaseapp.com",
+    databaseURL: "https://tourly-93b01-default-rtdb.firebaseio.com/", // Optional for realtime database
+    storageBucket: "your-project-id.appspot.com",
+    measurementId: "G-ABCDEF1234", // Optional for Analytics
+  ),
+);
+
   runApp(const MyApp());
 }
 
